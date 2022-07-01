@@ -2,11 +2,18 @@ import React from 'react';
 import Image from 'next/image';
 
 import inputSearchLogo from '../../../public/inputSearchLogo.svg';
+import { useAppContext } from '../../context/context';
 import { 
-  SearchInput, SearchInputHelper, SearchInputLabel, SearchInputWrapper, SearchInputSection
+  SearchInput,
+  SearchInputHelper,
+  SearchInputLabel,
+  SearchInputWrapper,
+  SearchInputSection
 } from './style';
 
 function TextSearchInput() {
+  const { textSearchValue, setTextSearchValue } = useAppContext();
+
   return (
     <SearchInputWrapper>
         <SearchInputSection>
@@ -16,6 +23,8 @@ function TextSearchInput() {
               id="search-input"
               name="search-input"
               placeholder="Pesquisar"
+              value={ textSearchValue }
+              onChange={ ({target}) => setTextSearchValue(target.value) }
             />
           </SearchInputLabel>
 
