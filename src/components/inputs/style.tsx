@@ -7,6 +7,7 @@ export const SearchInputWrapper = styled.section`
   display: flex;
   height: 73px;
   justify-content: center;
+  position: absolute;
   width: 100vw;
 `;
 
