@@ -7,8 +7,11 @@ export const SearchInputWrapper = styled.section`
   display: flex;
   height: 73px;
   justify-content: center;
-  position: absolute;
   width: 100vw;
+
+  @media only screen and (min-width: 1000px) {
+    position: absolute;
+  }
 `;
 
 export const SearchInputSection = styled.section`
