@@ -1,6 +1,8 @@
 import Header from '../components/header/Header';
+import PriceFilter from '../components/price-filter/PriceFilter';
 import TextSearchInput from '../components/search-input/TextSearchInput';
 import { useAppContext } from '../context/context';
+import { MainSection } from '../styles/mainStyle';
 
 export default function Home() {
   const { searchStatus } = useAppContext();
@@ -9,6 +11,9 @@ export default function Home() {
     <main>
       <Header />
       { searchStatus && <TextSearchInput /> }
+      <MainSection>
+        <PriceFilter />
+      </MainSection>
     </main>
   );
 }
