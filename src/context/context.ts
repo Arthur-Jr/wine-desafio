@@ -4,7 +4,9 @@ type appContextType = {
   searchStatus: boolean;
   setSearchStatus: Dispatch<SetStateAction<boolean>>;
   textSearchValue: string;
-  setTextSearchValue: Dispatch<SetStateAction<string>>
+  setTextSearchValue: Dispatch<SetStateAction<string>>;
+  filterValue: string;
+  setFilterValue: Dispatch<SetStateAction<string>>;
 }
 
 const appContexDefaultValue: appContextType = {
@@ -12,6 +14,8 @@ const appContexDefaultValue: appContextType = {
   setSearchStatus: () => null,
   textSearchValue: '',
   setTextSearchValue: () => null,
+  filterValue: '',
+  setFilterValue: () => null,
 };
 
 export const appContext = createContext<appContextType>(appContexDefaultValue);
