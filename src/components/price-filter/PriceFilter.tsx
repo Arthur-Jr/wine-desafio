@@ -21,7 +21,6 @@ function PriceFilter() {
                 text={ value.length > 1 ? `R$${value[0]} A R$${value[1]}` : optionalText }
                 value={`${index + 1}`}
                 id={`filter-radio-${index + 1}`}
-                handleChange={() => null}
               />
             );
           })}
