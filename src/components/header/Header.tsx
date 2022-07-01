@@ -6,6 +6,9 @@ import logo from '../../../public/wine.svg';
 import accLogo from '../../../public/accLogo.png';
 import cartLogo from '../../../public/cartLogo.png';
 import haburgerButton from '../../../public/hamburgerButton.png';
+import ImageLink from '../links/ImageLink';
+import SearchButton from '../buttons/SearchButton';
+import { useAppContext } from '../../context/context';
 
 import {
   HeaderStyle,
@@ -16,10 +19,10 @@ import {
   HeaderLink,
   CartCount,
 } from './style';
-import ImageLink from '../links/ImageLink';
-import SearchButton from '../buttons/SearchButton';
 
 function Header() {
+  const { searchStatus, setSearchStatus } = useAppContext();
+
   return (
     <HeaderStyle>
       <HeaderMainSection>
@@ -41,7 +44,7 @@ function Header() {
       </HeaderMainSection>
 
       <HeaderMainSection>
-        <SearchButton handleClick={() => null} />
+        <SearchButton handleClick={() => setSearchStatus(!searchStatus)} />
 
         <ImageLink alt="My account button" width={56} height={56} image={accLogo} path="/" />
         <ImageLink alt="Cart button" width={56} height={56} image={cartLogo} path="/" />
