@@ -24,7 +24,7 @@ function TextSearchInput() {
               name="search-input"
               placeholder="Pesquisar"
               value={ textSearchValue }
-              onChange={ ({target}) => setTextSearchValue(target.value) }
+              onChange={ ({target}): void => setTextSearchValue(target.value) }
             />
           </SearchInputLabel>
 
