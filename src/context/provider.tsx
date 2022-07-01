@@ -7,8 +7,15 @@ interface props {
 
 function Provider({ children }: props) {
   const [searchStatus, setSearchStatus] = useState<boolean>(false);
+  const [textSearchValue, setTextSearchValue] = useState<string>('');
   
-  const contextValue = { searchStatus, setSearchStatus };
+  const contextValue = {
+    searchStatus,
+    setSearchStatus,
+    textSearchValue,
+    setTextSearchValue
+  };
+
   return (
     <appContext.Provider value={contextValue}>
       {children}

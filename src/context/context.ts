@@ -3,11 +3,15 @@ import { createContext, Dispatch, SetStateAction, useContext } from 'react';
 type appContextType = {
   searchStatus: boolean;
   setSearchStatus: Dispatch<SetStateAction<boolean>>;
+  textSearchValue: string;
+  setTextSearchValue: Dispatch<SetStateAction<string>>
 }
 
 const appContexDefaultValue: appContextType = {
   searchStatus: false,
   setSearchStatus: () => null,
+  textSearchValue: '',
+  setTextSearchValue: () => null,
 };
 
 export const appContext = createContext<appContextType>(appContexDefaultValue);
