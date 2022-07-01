@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image, { StaticImageData } from 'next/image';
 
-import { ImageLinkWrapper } from '../links/style';
+import { ImageLinkWrapper } from './style';
 
 interface props {
   alt: string,

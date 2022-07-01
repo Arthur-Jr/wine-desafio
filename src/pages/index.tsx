@@ -1,5 +1,5 @@
 import Header from '../components/header/Header';
-import TextSearchInput from '../components/inputs/TextSearchInput';
+import TextSearchInput from '../components/search-input/TextSearchInput';
 import { useAppContext } from '../context/context';
 
 export default function Home() {

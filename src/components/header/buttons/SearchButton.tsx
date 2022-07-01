@@ -1,10 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
 
-import searchLogo from '../../../public/searchLogo.png';
-import coloredSearchLogo from '../../../public/coloredSearchLogo.png';
+import searchLogo from '../../../../public/searchLogo.png';
+import coloredSearchLogo from '../../../../public/coloredSearchLogo.png';
 import { SearchButtonStyled } from './style';
-import { useAppContext } from '../../context/context';
+import { useAppContext } from '../../../context/context';
 
 interface props {
   handleClick: () => void,
