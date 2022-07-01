@@ -45,7 +45,7 @@ export const HeaderLinksSection = styled.section`
     align-items: center;
     display: flex;
     justify-content: space-around;
-    width: 70%;
+    width: 80%;
   }
 `;
 
@@ -69,9 +69,10 @@ export const HamburguerButtonWrapper = styled.div`
 export const HeaderLink = styled.a`
   color: ${colors.darkGrey};
   font-family: 'Neo Sans Std';
+  font-size: 20px;
   font-weight: 400;
-  font-size: 18px;
   line-height: 24px;
+  padding: 28px 4px 34px;
 
   &:hover {
     color: ${colors.lightTannat};
