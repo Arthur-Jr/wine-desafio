@@ -72,7 +72,7 @@ export const HeaderLink = styled.a`
   font-size: 20px;
   font-weight: 400;
   line-height: 24px;
-  padding: 28px 4px 34px;
+  padding: 28px 4px 34px 15px;
 
   &:hover {
     color: ${colors.lightTannat};
