@@ -2,9 +2,13 @@ import styled from 'styled-components';
 import colors from '../../styles/colors';
 
 export const FilterWrapper = styled.main`
-  display: flex:
-  flex-direction: column;
-  width: 30%;
+  display: flex;
+  width: 100%;
+
+  @media only screen and (min-width: 1000px) {
+    flex-direction: column;
+    width: auto;
+  }
 `;
 
 export const Title = styled.h4`
@@ -36,16 +40,32 @@ export const SubTitle = styled.h6`
 `;
 
 export const FormSection = styled.section`
-  align-items: space-around;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  overflow: scroll;
+  width: 100%;
+
+  @media only screen and (min-width: 1000px) {
+    align-items: space-around;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    overflow: inherit;
+  }
 `;
 
 export const FilterForm = styled.form`
+  display: flex;
+  justify-content: space-around;
+  padding: 7px 6px;
+  width: 850px;
+
+  @media only screen and (min-width: 860px) {
+    width: 950px;
+  }
+
   @media only screen and (min-width: 1000px) {
     align-items: flex-start;
-    display: flex;
     flex-direction: column;
+    justify-content: none;
+    width: 100%;
   }
 `;
