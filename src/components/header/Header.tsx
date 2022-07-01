@@ -6,8 +6,8 @@ import logo from '../../../public/wine.svg';
 import accLogo from '../../../public/accLogo.png';
 import cartLogo from '../../../public/cartLogo.png';
 import haburgerButton from '../../../public/hamburgerButton.png';
-import ImageLink from '../links/ImageLink';
-import SearchButton from '../buttons/SearchButton';
+import ImageLink from './links/ImageLink';
+import SearchButton from './buttons/SearchButton';
 import { useAppContext } from '../../context/context';
 
 import {
