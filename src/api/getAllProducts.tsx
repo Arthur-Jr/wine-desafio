@@ -1,7 +1,22 @@
 import axios from 'axios';
 
-interface product {
-  [key: string]: (string | number);
+export interface product {
+  id: number;
+  image: string;
+  name: string;
+  price: number;
+  discount: number;
+  priceMember: number;
+  priceNonMember: number;
+  type: string;
+  classification: string;
+  size: string;
+  rating: number;
+  avaliations: number;
+  country: number;
+  region: string;
+  flag: string;
+  sommelierComment: string;
 }
 
 interface data {

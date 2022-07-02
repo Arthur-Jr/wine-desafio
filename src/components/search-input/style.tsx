@@ -7,7 +7,7 @@ export const SearchInputWrapper = styled.section`
   display: flex;
   height: 73px;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
 
   @media only screen and (min-width: 1000px) {
     position: absolute;
