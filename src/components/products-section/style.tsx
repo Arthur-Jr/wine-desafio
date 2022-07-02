@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import colors from '../../styles/colors';
 
 
-export const ProductsWrapper = styled.main`
+export const ProductsSectionStyled = styled.main`
   height: 100%;
   width: 78%;
 `;
@@ -22,4 +22,11 @@ export const ProductCount = styled.span`
   font-weight: 700;
   font-size: 18px;
   line-height: 22px;
+`;
+
+export const ProductsWrapper = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 32px 0 0;
 `;
