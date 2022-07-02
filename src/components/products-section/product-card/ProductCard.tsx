@@ -17,12 +17,16 @@ import {
 } from './style';
 
 function ProductCard({ product }: { product: product }) {
-  const getPricePart = (price: number, divisor: string, part: boolean): string => {
-    const priceToString = price.toFixed(2);
+  const priceToString = (price: number): string => {
+    return price.toFixed(2).replace('.', ',');
+  };
+
+  const getPricePart = (price: number, part: boolean): string => {
+    const priceString = priceToString(price);
     if (part) {
-      return priceToString.substring(0, priceToString.indexOf(divisor)).replace('.', ',');
+      return priceString.substring(0, priceString.indexOf(','));
     }
-    return priceToString.substring(priceToString.indexOf(divisor)).replace('.', ',');
+    return priceString.substring(priceString.indexOf(','));
   };
 
   return (
@@ -32,7 +36,7 @@ function ProductCard({ product }: { product: product }) {
         <CardTitle>{product.name}</CardTitle>
 
         <FullPriceWrapper>
-          <FullPrice>{`R$ ${product.price.toFixed(2).replace('.', ',')}`}</FullPrice>
+          <FullPrice>{`R$ ${priceToString(product.price)}`}</FullPrice>
           <CardDiscount>{`${product.discount}% OFF`}</CardDiscount>
         </FullPriceWrapper>
 
@@ -40,13 +44,13 @@ function ProductCard({ product }: { product: product }) {
           <PartnerText>SÓCIO WINE</PartnerText>
           <PartnerText>
             {'R$ '}
-            <PartnerPrice>{getPricePart(product.priceMember, '.', true)}</PartnerPrice>
-            {getPricePart(product.priceMember, '.', false)}
+            <PartnerPrice>{getPricePart(product.priceMember, true)}</PartnerPrice>
+            {getPricePart(product.priceMember, false)}
           </PartnerText>
         </PartnerPriceWrapper>
 
         <NoPartnerPrice>
-          {`Não sócio R$ ${product.priceNonMember.toFixed(2).replace('.', ',')}`}
+          {`Não sócio R$ ${priceToString(product.priceNonMember)}`}
         </NoPartnerPrice>
       </Card>
 
