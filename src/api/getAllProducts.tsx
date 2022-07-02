@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-interface product {
+export interface product {
   [key: string]: (string | number);
 }
 
