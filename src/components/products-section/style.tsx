@@ -4,7 +4,14 @@ import colors from '../../styles/colors';
 
 export const ProductsSectionStyled = styled.main`
   height: 100%;
-  width: 78%;
+  width: 100%;
+  padding: 20px;
+
+  @media only screen and (min-width: 1000px) {
+    height: 100%;
+    width: 78%;
+    padding: 0;
+  }
 `;
 
 export const CountText = styled.span`
