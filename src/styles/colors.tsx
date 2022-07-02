@@ -9,6 +9,9 @@ const colors = {
   grey2: '#f5f5f5',
   lightTannat: '#D14B8F',
   lightChardonnay: '#4FBFA5',
+  orange: '#F79552',
+  pink: '#B6116E',
+  green: '#7EBC43;',
 };
 
 export default colors;
