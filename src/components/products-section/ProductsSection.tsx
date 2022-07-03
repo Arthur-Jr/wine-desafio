@@ -22,7 +22,7 @@ function ProductsSection() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [actualPage, setActualPage] = useState<number>(1);
 
-  const { textSearchValue, filterValue} = useAppContext();
+  const { textSearchValue, filterValue, isMobile } = useAppContext();
 
   useEffect((): void => {
     getAllProducts().then((data) => {
@@ -44,7 +44,22 @@ function ProductsSection() {
     )));
 
     setProductsToDisplay(toDisplay);
+    setActualPage(1);
   }, [allProducts, textSearchValue, filterValue]);
+
+  const getProductsByPage = (): product[] => {
+    if (isMobile) {
+      return productsToDisplay.slice(0, 12 * actualPage);
+    }
+
+    if (!isMobile && actualPage === 1) {
+      return productsToDisplay.slice(0, 12);
+    } else {
+      return productsToDisplay.slice(0 + 12 * (actualPage - 1), 12 * actualPage);
+    }
+  };
+
+  getProductsByPage();
 
   return (
     <ProductsSectionStyled>
@@ -55,7 +70,10 @@ function ProductsSection() {
 
       {!isLoading ?
         <ProductsWrapper>
-          {productsToDisplay.map((product) => (<ProductCard product={product} key={product.id}/>))}
+          {
+            getProductsByPage()
+            .map((product) => (<ProductCard product={product} key={product.id}/>))
+          }
         </ProductsWrapper>
         :
         <LoadingWrapper>
