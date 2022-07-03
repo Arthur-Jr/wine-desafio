@@ -1,4 +1,5 @@
 import React, { ReactNode, useEffect, useState } from 'react';
+import { product } from '../api/getAllProducts';
 import { appContext } from './context';
 
 interface props {
@@ -11,6 +12,7 @@ function Provider({ children }: props) {
   const [filterValue, setFilterValue] = useState<string>('');
   const [cartCountState, setCartCountState] = useState<number>(0);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [allProducts, setAllProducts] = useState<product[]>([]);
   
   const contextValue = {
     searchStatus,
@@ -22,6 +24,8 @@ function Provider({ children }: props) {
     cartCountState,
     setCartCountState,
     isMobile,
+    allProducts,
+    setAllProducts
   };
 
   useEffect(() => {

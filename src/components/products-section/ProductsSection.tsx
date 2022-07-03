@@ -18,12 +18,11 @@ import {
 } from './style';
 
 function ProductsSection() {
-  const [allProducts, setAllProducts] = useState<product[]>([]);
   const [productsToDisplay, setProductsToDisplay] = useState<product[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [actualPage, setActualPage] = useState<number>(1);
 
-  const { textSearchValue, filterValue, isMobile } = useAppContext();
+  const { textSearchValue, filterValue, isMobile, allProducts, setAllProducts } = useAppContext();
 
   useEffect((): void => {
     getAllProducts().then((data) => {
