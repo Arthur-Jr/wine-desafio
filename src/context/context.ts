@@ -9,6 +9,7 @@ type appContextType = {
   setFilterValue: Dispatch<SetStateAction<string>>;
   cartCountState: number;
   setCartCountState: Dispatch<SetStateAction<number>>;
+  isMobile: boolean;
 }
 
 const appContexDefaultValue: appContextType = {
@@ -20,6 +21,7 @@ const appContexDefaultValue: appContextType = {
   setFilterValue: () => null,
   cartCountState: 0,
   setCartCountState: () => null,
+  isMobile: false,
 };
 
 export const appContext = createContext<appContextType>(appContexDefaultValue);
