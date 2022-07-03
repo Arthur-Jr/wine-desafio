@@ -30,7 +30,7 @@ function ProductsSection() {
       setProductsToDisplay(data);
       setIsLoading(false);
     });
-  }, []);
+  }, [setAllProducts]);
 
   useEffect((): void => {
     let toDisplay = allProducts;

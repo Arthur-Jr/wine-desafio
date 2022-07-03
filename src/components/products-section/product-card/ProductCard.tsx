@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 
 import { product } from '../../../api/getAllProducts';
@@ -19,6 +20,7 @@ import {
 
 function ProductCard({ product }: { product: product }) {
   const { setCartCountState } = useAppContext();
+  const router = useRouter();
 
   const priceToString = (price: number): string => {
     return price.toFixed(2).replace('.', ',');
@@ -44,9 +46,13 @@ function ProductCard({ product }: { product: product }) {
     }
   };
 
+  const handleCardClick = (id: number): void => {
+    router.push(`/product/${id}`);
+  };
+
   return (
     <CardWrapper>
-      <Card>
+      <Card onClick={() => handleCardClick(product.id)}>
         <CardImage src={product.image} />
         <CardTitle>{product.name}</CardTitle>
 
