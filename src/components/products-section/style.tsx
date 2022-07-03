@@ -37,3 +37,13 @@ export const ProductsWrapper = styled.section`
   justify-content: space-between;
   padding: 32px 0 0;
 `;
+
+export const LoadingWrapper = styled.div`
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px 0 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+`;
