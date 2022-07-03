@@ -21,18 +21,24 @@ function Provider({ children }: props) {
     setFilterValue,
     cartCountState,
     setCartCountState,
-    isMobile
+    isMobile,
   };
 
   useEffect(() => {
+    const PHONE_WIDTH_PX = 650;
+
     const resizeListener = () => {
-      const PHONE_WIDTH_PX = 650;
       if (window.innerWidth > PHONE_WIDTH_PX) {
         setIsMobile(false);
       } else {
         setIsMobile(true);
       }
     };
+
+    if (window.innerWidth < PHONE_WIDTH_PX) {
+      console.log('a');
+      setIsMobile(true);
+    }
 
     window.addEventListener('resize', resizeListener);
 
