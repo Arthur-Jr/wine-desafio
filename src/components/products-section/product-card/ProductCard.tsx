@@ -1,7 +1,10 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 
 import { product } from '../../../api/getAllProducts';
 import { useAppContext } from '../../../context/context';
+import handleAddCartButton from '../../../utils/handleAddCartButton';
+import priceToString from '../../../utils/priceToString';
 import {
   Card,
   CardImage,
@@ -18,11 +21,8 @@ import {
 } from './style';
 
 function ProductCard({ product }: { product: product }) {
-  const { setCartCountState } = useAppContext();
-
-  const priceToString = (price: number): string => {
-    return price.toFixed(2).replace('.', ',');
-  };
+  const { setCartCountState, setAddCartMessage } = useAppContext();
+  const router = useRouter();
 
   const getPricePart = (price: number, part: boolean): string => {
     const priceString = priceToString(price);
@@ -32,21 +32,13 @@ function ProductCard({ product }: { product: product }) {
     return priceString.substring(priceString.indexOf(','));
   };
 
-  const handleCartButton = (product: product): void => {
-    const actualStorage: product[] = JSON.parse(localStorage.getItem('wineCart'));
-
-    if (actualStorage !== null) {
-      localStorage.setItem('wineCart', JSON.stringify([...actualStorage, product]));
-      setCartCountState(actualStorage.length + 1);
-    } else {
-      localStorage.setItem('wineCart', JSON.stringify([product]));
-      setCartCountState(1);
-    }
+  const handleCardClick = (id: number): void => {
+    router.push(`/product/${id}`);
   };
 
   return (
     <CardWrapper>
-      <Card>
+      <Card onClick={() => handleCardClick(product.id)}>
         <CardImage src={product.image} />
         <CardTitle>{product.name}</CardTitle>
 
@@ -69,7 +61,12 @@ function ProductCard({ product }: { product: product }) {
         </NoPartnerPrice>
       </Card>
 
-      <CardButton type="button" onClick={() => handleCartButton(product)}>ADICIONAR</CardButton>
+      <CardButton
+        type="button"
+        onClick={() => handleAddCartButton(product, setCartCountState, setAddCartMessage)}
+      >
+        ADICIONAR
+      </CardButton>
     </CardWrapper>
   );
 }

@@ -1,4 +1,5 @@
 import { createContext, Dispatch, SetStateAction, useContext } from 'react';
+import { product } from '../api/getAllProducts';
 
 type appContextType = {
   searchStatus: boolean;
@@ -10,6 +11,10 @@ type appContextType = {
   cartCountState: number;
   setCartCountState: Dispatch<SetStateAction<number>>;
   isMobile: boolean;
+  allProducts: product[];
+  setAllProducts: Dispatch<SetStateAction<product[]>>;
+  addCartMessage: string;
+  setAddCartMessage: Dispatch<SetStateAction<string>>;
 }
 
 const appContexDefaultValue: appContextType = {
@@ -22,6 +27,10 @@ const appContexDefaultValue: appContextType = {
   cartCountState: 0,
   setCartCountState: () => null,
   isMobile: false,
+  allProducts: [],
+  setAllProducts: () => null,
+  addCartMessage: '',
+  setAddCartMessage: () => null,
 };
 
 export const appContext = createContext<appContextType>(appContexDefaultValue);
