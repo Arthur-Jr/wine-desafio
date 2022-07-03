@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { product } from '../../../api/getAllProducts';
+import { useAppContext } from '../../../context/context';
 import {
   Card,
   CardImage,
@@ -17,6 +18,8 @@ import {
 } from './style';
 
 function ProductCard({ product }: { product: product }) {
+  const { setCartCountState } = useAppContext();
+
   const priceToString = (price: number): string => {
     return price.toFixed(2).replace('.', ',');
   };
@@ -27,6 +30,18 @@ function ProductCard({ product }: { product: product }) {
       return priceString.substring(0, priceString.indexOf(','));
     }
     return priceString.substring(priceString.indexOf(','));
+  };
+
+  const handleCartButton = (product: product): void => {
+    const actualStorage: product[] = JSON.parse(localStorage.getItem('wineCart'));
+
+    if (actualStorage !== null) {
+      localStorage.setItem('wineCart', JSON.stringify([...actualStorage, product]));
+      setCartCountState(actualStorage.length + 1);
+    } else {
+      localStorage.setItem('wineCart', JSON.stringify([product]));
+      setCartCountState(1);
+    }
   };
 
   return (
@@ -54,7 +69,7 @@ function ProductCard({ product }: { product: product }) {
         </NoPartnerPrice>
       </Card>
 
-      <CardButton type="button">ADICIONAR</CardButton>
+      <CardButton type="button" onClick={() => handleCartButton(product)}>ADICIONAR</CardButton>
     </CardWrapper>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -21,7 +21,13 @@ import {
 } from './style';
 
 function Header() {
-  const { searchStatus, setSearchStatus } = useAppContext();
+  const { searchStatus, setSearchStatus, cartCountState, setCartCountState } = useAppContext();
+
+  useEffect((): void => {
+    if (localStorage.getItem('wineCart') !== null) {
+      setCartCountState(JSON.parse(localStorage.getItem('wineCart')).length);
+    }
+  }, [setCartCountState]);
 
   return (
     <HeaderStyle>
@@ -48,7 +54,7 @@ function Header() {
 
         <ImageLink alt="My account button" width={56} height={56} image={accLogo} path="/" />
         <ImageLink alt="Cart button" width={56} height={56} image={cartLogo} path="/" />
-        <CartCount>0</CartCount>
+        <CartCount>{cartCountState}</CartCount>
       </HeaderMainSection>
     </HeaderStyle>
   );
