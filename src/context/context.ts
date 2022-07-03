@@ -7,6 +7,8 @@ type appContextType = {
   setTextSearchValue: Dispatch<SetStateAction<string>>;
   filterValue: string;
   setFilterValue: Dispatch<SetStateAction<string>>;
+  cartCountState: number;
+  setCartCountState: Dispatch<SetStateAction<number>>;
 }
 
 const appContexDefaultValue: appContextType = {
@@ -16,6 +18,8 @@ const appContexDefaultValue: appContextType = {
   setTextSearchValue: () => null,
   filterValue: '',
   setFilterValue: () => null,
+  cartCountState: 0,
+  setCartCountState: () => null,
 };
 
 export const appContext = createContext<appContextType>(appContexDefaultValue);

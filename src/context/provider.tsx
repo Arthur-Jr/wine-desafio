@@ -9,6 +9,7 @@ function Provider({ children }: props) {
   const [searchStatus, setSearchStatus] = useState<boolean>(false);
   const [textSearchValue, setTextSearchValue] = useState<string>('');
   const [filterValue, setFilterValue] = useState<string>('');
+  const [cartCountState, setCartCountState] = useState<number>(0);
   
   const contextValue = {
     searchStatus,
@@ -17,6 +18,8 @@ function Provider({ children }: props) {
     setTextSearchValue,
     filterValue,
     setFilterValue,
+    cartCountState,
+    setCartCountState
   };
 
   return (
