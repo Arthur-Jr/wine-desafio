@@ -13,6 +13,7 @@ function Provider({ children }: props) {
   const [cartCountState, setCartCountState] = useState<number>(0);
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [allProducts, setAllProducts] = useState<product[]>([]);
+  const [addCartMessage, setAddCartMessage] = useState<string>('');
   
   const contextValue = {
     searchStatus,
@@ -25,7 +26,9 @@ function Provider({ children }: props) {
     setCartCountState,
     isMobile,
     allProducts,
-    setAllProducts
+    setAllProducts,
+    addCartMessage,
+    setAddCartMessage
   };
 
   useEffect(() => {

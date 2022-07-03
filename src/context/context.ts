@@ -13,6 +13,8 @@ type appContextType = {
   isMobile: boolean;
   allProducts: product[];
   setAllProducts: Dispatch<SetStateAction<product[]>>;
+  addCartMessage: string;
+  setAddCartMessage: Dispatch<SetStateAction<string>>;
 }
 
 const appContexDefaultValue: appContextType = {
@@ -27,6 +29,8 @@ const appContexDefaultValue: appContextType = {
   isMobile: false,
   allProducts: [],
   setAllProducts: () => null,
+  addCartMessage: '',
+  setAddCartMessage: () => null,
 };
 
 export const appContext = createContext<appContextType>(appContexDefaultValue);
