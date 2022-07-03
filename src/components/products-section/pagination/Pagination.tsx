@@ -27,13 +27,13 @@ function Pagination({ productsQuantity, actualPage, setActualPage }: props) {
 
     if (actualPage === 1) {
       pageArray = pageArray.slice(2);
-      pageArray[2] = 3;
+      maxPage > 2 ? pageArray.splice(2, 1, 3) : pageArray.pop();
       maxPage > 3 && pageArray.push('...');
     }
 
     if (actualPage === maxPage) {
-      pageArray[0] = actualPage - 2;
-      pageArray.unshift('...');
+      actualPage - 2 >= 1 ? pageArray.splice(0, 1, actualPage - 2) : pageArray.shift();
+      actualPage > 3 && pageArray.unshift('...');
       pageArray.pop();
       pageArray.pop();
     }
