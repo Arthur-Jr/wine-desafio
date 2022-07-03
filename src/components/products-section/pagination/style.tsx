@@ -5,10 +5,15 @@ export const PageQuantityWrapper = styled.div`
   align-self: center;
   align-items: center;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
   height: 38px;
   padding: 0 0 20px;
   width: 350px;
+
+  @media only screen and (min-width: 650px) {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 `;
 
 export const EllipsisSpan = styled.span`
@@ -51,4 +56,31 @@ export const ChangePageButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const NextPageMobile = styled.button`
+  align-items: center;
+  align-self: center;
+  background: inherit;
+  border: 2px solid ${colors.pink};
+  border-radius: 5px;
+  color: ${colors.pink};
+  display: flex;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  justify-content: center;
+  height: 40px;
+  padding: 12px 24px;
+  width: 100%;
+`;
+
+export const MobilePageCount = styled(EllipsisSpan)`
+  color: ${colors.black};
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  padding: 8px 0 25px;
 `;

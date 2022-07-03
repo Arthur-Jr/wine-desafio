@@ -1,10 +1,13 @@
 import React, { Dispatch, ReactNode, SetStateAction } from 'react';
+import { useAppContext } from '../../../context/context';
 
 import {
   EllipsisSpan,
   ChangePageButton,
   PageNumberButton,
-  PageQuantityWrapper
+  PageQuantityWrapper,
+  NextPageMobile,
+  MobilePageCount
 } from './style';
 
 interface props {
@@ -14,6 +17,8 @@ interface props {
 }
 
 function Pagination({ productsQuantity, actualPage, setActualPage }: props) {
+  const { isMobile } = useAppContext();
+
   const getPages = (): (string | number)[] => {
     let pageArray = [];
     const maxPage = Math.ceil(productsQuantity / 12);
@@ -58,21 +63,40 @@ function Pagination({ productsQuantity, actualPage, setActualPage }: props) {
     );
   };
 
+  const getMobileQauntityPerPage = (): number => {
+    const maxPage = Math.ceil(productsQuantity / 12);
+    return actualPage === maxPage ? productsQuantity : 12 * actualPage;
+  };
+
+  if (!isMobile) {
+    return (
+      <PageQuantityWrapper>
+        {actualPage > 1 && 
+          <ChangePageButton onClick={() => handleNextPageClick(actualPage - 1)} type="button">
+            {'<< Anterior'}
+          </ChangePageButton>
+        }
+  
+        {getPages().map((page: (string | number)) => setPageDisplay(page))}
+  
+        {actualPage !== Math.ceil(productsQuantity / 12) && 
+          <ChangePageButton onClick={() => handleNextPageClick(actualPage + 1)} type="button">
+            {'Próximo >>'}
+          </ChangePageButton>
+        }
+      </PageQuantityWrapper>
+    );
+  }
+
   return (
     <PageQuantityWrapper>
-      {actualPage > 1 &&
-        <ChangePageButton onClick={() => handleNextPageClick(actualPage - 1)} type="button">
-          {'<< Anterior'}
-        </ChangePageButton>
-      }
+      <NextPageMobile type="button" onClick={() => handleNextPageClick(actualPage + 1)}>
+        Mostrar mais
+      </NextPageMobile>
 
-      {getPages().map((page: (string | number)) => setPageDisplay(page))}
-
-      {actualPage !== Math.ceil(productsQuantity / 12) && 
-        <ChangePageButton onClick={() => handleNextPageClick(actualPage + 1)} type="button">
-          {'Próximo >>'}
-        </ChangePageButton>
-      }
+      <MobilePageCount>
+        {`Exibindo ${getMobileQauntityPerPage()} de ${productsQuantity} produtos no total`}
+      </MobilePageCount>
     </PageQuantityWrapper>
   );
 }
