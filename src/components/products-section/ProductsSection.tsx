@@ -16,13 +16,21 @@ import {
   ProductsSectionStyled,
   LoadingWrapper
 } from './style';
+import { CartMessage } from '../../styles/mainStyle';
 
 function ProductsSection() {
   const [productsToDisplay, setProductsToDisplay] = useState<product[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [actualPage, setActualPage] = useState<number>(1);
 
-  const { textSearchValue, filterValue, isMobile, allProducts, setAllProducts } = useAppContext();
+  const {
+    textSearchValue,
+    filterValue,
+    isMobile,
+    allProducts,
+    setAllProducts,
+    addCartMessage,
+  } = useAppContext();
 
   useEffect((): void => {
     getAllProducts().then((data) => {
@@ -88,6 +96,8 @@ function ProductsSection() {
           setActualPage={setActualPage}
         />
       }
+
+      {addCartMessage.length > 0 && <CartMessage>{addCartMessage}</CartMessage>}
     </ProductsSectionStyled>
   );
 }

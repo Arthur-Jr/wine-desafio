@@ -21,7 +21,7 @@ import {
 } from './style';
 
 function ProductCard({ product }: { product: product }) {
-  const { setCartCountState } = useAppContext();
+  const { setCartCountState, setAddCartMessage } = useAppContext();
   const router = useRouter();
 
   const getPricePart = (price: number, part: boolean): string => {
@@ -61,7 +61,10 @@ function ProductCard({ product }: { product: product }) {
         </NoPartnerPrice>
       </Card>
 
-      <CardButton type="button" onClick={() => handleAddCartButton(product, setCartCountState)}>
+      <CardButton
+        type="button"
+        onClick={() => handleAddCartButton(product, setCartCountState, setAddCartMessage)}
+      >
         ADICIONAR
       </CardButton>
     </CardWrapper>

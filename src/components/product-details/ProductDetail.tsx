@@ -4,6 +4,7 @@ import { product } from '../../api/getAllProducts';
 import { useAppContext } from '../../context/context';
 import handleAddCartButton from '../../utils/handleAddCartButton';
 import priceToString from '../../utils/priceToString';
+import { CartMessage } from '../../styles/mainStyle';
 import {
   CountryFlag,
   DescriptionText,
@@ -26,7 +27,7 @@ import {
 } from './style';
 
 function ProductDetail({ product }: { product: product }) {
-  const { setCartCountState } = useAppContext();
+  const { setCartCountState, addCartMessage, setAddCartMessage } = useAppContext();
 
   return (
     <>
@@ -76,11 +77,13 @@ function ProductDetail({ product }: { product: product }) {
 
         <DetailButton
           type="button"
-          onClick={() => handleAddCartButton(product, setCartCountState)}
+          onClick={() => handleAddCartButton(product, setCartCountState, setAddCartMessage)}
         >
           Adicionar
         </DetailButton>
       </PriceWrapper>
+
+      {addCartMessage.length > 0 && <CartMessage>{addCartMessage}</CartMessage>}
     </>
   );
 }
