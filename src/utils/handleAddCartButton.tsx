@@ -1,7 +1,20 @@
 import { Dispatch, SetStateAction } from 'react';
 import { product } from '../api/getAllProducts';
 
-const handleAddCartButton = (product: product, setCartCountState: Dispatch<SetStateAction<number>>): void => {
+const timedMessage = (setMessage: Dispatch<SetStateAction<string>>): void => {
+  const TWO_SECONDS = 2000;
+  setMessage('Produto Adicionado');
+
+  setTimeout(() => {
+    setMessage('');
+  }, TWO_SECONDS);
+};
+
+const handleAddCartButton = (
+  product: product,
+  setCartCountState: Dispatch<SetStateAction<number>>,
+  setCartMessage: Dispatch<SetStateAction<string>>
+): void => {
   const actualStorage: product[] = JSON.parse(localStorage.getItem('wineCart'));
 
   if (actualStorage !== null) {
@@ -11,6 +24,8 @@ const handleAddCartButton = (product: product, setCartCountState: Dispatch<SetSt
     localStorage.setItem('wineCart', JSON.stringify([product]));
     setCartCountState(1);
   }
+
+  timedMessage(setCartMessage);
 };
 
 export default handleAddCartButton;
