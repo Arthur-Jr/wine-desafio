@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import getAllProducts, { product } from '../../api/getAllProducts';
 import { useAppContext } from '../../context/context';
+import pageQuantity from '../../utils/pageQauntity';
 import filterByRadio from '../../utils/filterByRadio';
 import ProductCard from './product-card/ProductCard';
 import Pagination from './pagination/Pagination';
@@ -49,13 +50,13 @@ function ProductsSection() {
 
   const getProductsByPage = (): product[] => {
     if (isMobile) {
-      return productsToDisplay.slice(0, 12 * actualPage);
+      return productsToDisplay.slice(0, pageQuantity * actualPage);
     }
 
     if (!isMobile && actualPage === 1) {
-      return productsToDisplay.slice(0, 12);
+      return productsToDisplay.slice(0, pageQuantity);
     } else {
-      return productsToDisplay.slice(0 + 12 * (actualPage - 1), 12 * actualPage);
+      return productsToDisplay.slice(0 + pageQuantity * (actualPage - 1), pageQuantity * actualPage);
     }
   };
 

@@ -1,5 +1,7 @@
 import React, { Dispatch, ReactNode, SetStateAction } from 'react';
+
 import { useAppContext } from '../../../context/context';
+import pageQuantity from '../../../utils/pageQauntity';
 
 import {
   EllipsisSpan,
@@ -21,7 +23,7 @@ function Pagination({ productsQuantity, actualPage, setActualPage }: props) {
 
   const getPages = (): (string | number)[] => {
     let pageArray = [];
-    const maxPage = Math.ceil(productsQuantity / 12);
+    const maxPage = Math.ceil(productsQuantity / pageQuantity);
 
     pageArray = ['...', actualPage - 1, actualPage, actualPage + 1, '...'];
 
@@ -47,9 +49,9 @@ function Pagination({ productsQuantity, actualPage, setActualPage }: props) {
     }
   };
 
-  const setPageDisplay = (value: (string | number)): ReactNode => {
+  const setPageDisplay = (value: (string | number), index: number): ReactNode => {
     if (typeof value === 'string') {
-      return <EllipsisSpan>{value}</EllipsisSpan>;
+      return <EllipsisSpan key={index}>{value}</EllipsisSpan>;
     }
 
     return (
@@ -57,6 +59,7 @@ function Pagination({ productsQuantity, actualPage, setActualPage }: props) {
         type="button"
         active={actualPage === value}
         onClick={() => handleNextPageClick(value)}
+        key={index}
       >
         {value}
       </PageNumberButton>
@@ -64,8 +67,8 @@ function Pagination({ productsQuantity, actualPage, setActualPage }: props) {
   };
 
   const getMobileQauntityPerPage = (): number => {
-    const maxPage = Math.ceil(productsQuantity / 12);
-    return actualPage === maxPage ? productsQuantity : 12 * actualPage;
+    const maxPage = Math.ceil(productsQuantity / pageQuantity);
+    return actualPage === maxPage ? productsQuantity : pageQuantity * actualPage;
   };
 
   if (!isMobile) {
@@ -77,9 +80,9 @@ function Pagination({ productsQuantity, actualPage, setActualPage }: props) {
           </ChangePageButton>
         }
   
-        {getPages().map((page: (string | number)) => setPageDisplay(page))}
+        {getPages().map((page: (string | number), index: number) => setPageDisplay(page, index))}
   
-        {actualPage !== Math.ceil(productsQuantity / 12) && 
+        {actualPage !== Math.ceil(productsQuantity / pageQuantity) && 
           <ChangePageButton onClick={() => handleNextPageClick(actualPage + 1)} type="button">
             {'Próximo >>'}
           </ChangePageButton>
